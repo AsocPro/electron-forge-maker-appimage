@@ -33,7 +33,7 @@ export default class MakerAppImage extends MakerBase<MakerAppImageConfig> {
   }
 
   async make({
-    dir, // '/home/build/Software/monorepo/packages/electron/out/name-linux-x64'
+    dir, // '/home/build/Software/monorepo/packages/electron/out/name-linux-arm64'
     appName, // 'name'
     makeDir, // '/home/build/Software/monorepo/packages/electron/out/make',
     targetArch, // 'x64'
@@ -91,7 +91,7 @@ export default class MakerAppImage extends MakerBase<MakerAppImageConfig> {
       { file: `${iconPath}/256x256.png`, size: 256 }
     ];
 
-    const stageDir = path.join(makeDir, "__appImage-x64");
+    const stageDir = path.join(makeDir, "__appImage-arm64");
 
     if (!existsSync(makeDir)) {
       mkdirSync(makeDir, { recursive: true });
@@ -110,13 +110,13 @@ export default class MakerAppImage extends MakerBase<MakerAppImageConfig> {
 
     const args = [
       "appimage",
-      "--stage", // '/home/build/Software/monorepo/packages/electron/out/make/__appImage-x64',
+      "--stage", // '/home/build/Software/monorepo/packages/electron/out/make/__appImage-arm64',
       stageDir,
       "--arch", // 'x64'
-      "x64",
+      "arm64",
       "--output", // '/home/build/Software/monorepo/packages/electron/out/make/name-2.0.6.AppImage',
       appPath,
-      "--app", // '/home/build/Software/monorepo/packages/electron/out/name-linux-x64',
+      "--app", // '/home/build/Software/monorepo/packages/electron/out/name-linux-arm64',
       dir,
       "--configuration",
       JSON.stringify({
